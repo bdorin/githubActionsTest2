@@ -19,7 +19,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: List files for debugging
+        run: |
+            ls -R .github/actions/
+            ls -R logs/
+
       - name: Parse logs
-        uses: ./github\actions\custom-actions
+        uses: ./actions/custom-actions
         with:
           log-path: ${{ inputs.log-path }}
