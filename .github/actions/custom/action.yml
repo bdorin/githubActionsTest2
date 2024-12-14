@@ -1,4 +1,4 @@
-name: "Parse logs"
+name: "Parse Unity Logs"
 description: "Parses Unity Editor logs for errors and warnings."
 inputs:
   log-path:
@@ -22,4 +22,4 @@ runs:
 
     - name: Parse Logs
       run: |
-        python .github/actions/my-custom-action/parser.py --log-path ${{ inputs.log-path }}
+        python .github/actions/custom/parser.py --log-path ${{ inputs.log-path }}
