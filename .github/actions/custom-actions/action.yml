@@ -1,0 +1,25 @@
+name: "Parse logs"
+description: "Parses Unity Editor logs for errors and warnings."
+inputs:
+  log-path:
+    description: "Path to the log file"
+    required: true
+    type: string
+outputs:
+  errors:
+    description: "Parsed errors from the log file"
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.x"
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+
+    - name: Parse Logs
+      run: |
+        python .github/actions/my-custom-action/parser.py --log-path ${{ inputs.log-path }}
