@@ -20,6 +20,6 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Parse logs
-        uses: ./github/actions/custom-actions
+        uses: .github\actions\custom-actions
         with:
           log-path: ${{ inputs.log-path }}
