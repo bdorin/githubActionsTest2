@@ -1,30 +1,48 @@
-name: Parse Unity Logs
+# name: Parse Unity Logs
 
-run-name: ${{ inputs.log-path }}
-on:
-  workflow_dispatch:
-    inputs:
-      log-path:
-        description: 'Path to the log file'
-        required: true
-        type: choice
-        options:
-          - 'logs/sample-project-failure.log'
-          - 'logs/sample-project-success.log'
+# run-name: ${{ inputs.log-path }}
+# on:
+#   workflow_dispatch:
+#     inputs:
+#       log-path:
+#         description: 'Path to the log file'
+#         required: true
+#         type: choice
+#         options:
+#           - 'logs/sample-project-failure.log'
+#           - 'logs/sample-project-success.log'
+
+# jobs:
+#   Parse-Unity-Logs:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v4
+
+#       - name: List files for debugging
+#         run: |
+#             ls -R .github/actions/
+#             ls -R logs/
+
+#       - name: Parse logs
+#         uses: ./github/actions
+#         with:
+#           log-path: ${{ inputs.log-path }}
+
+
+on: [push]
 
 jobs:
-  Parse-Unity-Logs:
+  hello_world_job:
     runs-on: ubuntu-latest
+    name: A job to say hello
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: List files for debugging
-        run: |
-            ls -R .github/actions/
-            ls -R logs/
-
-      - name: Parse logs
-        uses: ./github/actions
+      - uses: actions/checkout@v4
+      - id: foo
+        uses: OWNER/hello-world-composite-action@SHA
         with:
-          log-path: ${{ inputs.log-path }}
+          who-to-greet: 'Mona the Octocat'
+      - run: echo random-number "$RANDOM_NUMBER"
+        shell: bash
+        env:
+          RANDOM_NUMBER: ${{ steps.foo.outputs.random-number }}
