@@ -25,6 +25,6 @@ jobs:
             ls -R logs/
 
       - name: Parse logs
-        uses: ./github/actions/custom
+        uses: ./.github/actions/custom-actions
         with:
           log-path: ${{ inputs.log-path }}
