@@ -38,7 +38,7 @@ jobs:
     name: A job to say hello
     steps:
       - name: Make script executable
-        run: chmod +x ./your-script.sh
+        run: chmod +x ./goodbye.sh
       - uses: actions/checkout@v4
       - id: foo
         uses: bdorin/githubActionsTest2@main
